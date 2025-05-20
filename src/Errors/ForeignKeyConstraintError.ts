@@ -1,0 +1,1 @@
+export class ForeignKeyConstraintError extends Error {}
