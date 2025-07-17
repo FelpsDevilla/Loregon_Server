@@ -1,6 +1,6 @@
 {
   "name": "loregon-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Server loregon",
   "main": "dist/main.js",
   "type": "module",
@@ -10,12 +10,10 @@
     "createDB": "typeorm-ts-node-esm migration:generate -d src/data-source.ts src/migrations/createDB && typeorm-ts-node-esm migration:run -d src/data-source.ts",
     "migrations:run": "typeorm-ts-node-esm migration:run -d src/data-source.ts",
     "migrations:revert": "typeorm-ts-node-esm migration:revert -d src/data-source.ts",
-    "dev": "nodemon --watch src --ext ts --delay 200ms --exec \"tsx src/main.ts\"",
+    "dev": "nodemon --watch src --ext ts --delay 200ms --exec \"tsx src/server.ts\"",
     "build": "tsc && resolve-tspaths",
-    "start": "typeorm-ts-node-esm migration:run -d dist/data-source.js && node dist/main.js",
-    "docker": "docker-compose -f docker-compose.test.yml --project-name test_loregon up -d",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
+    "start": "typeorm-ts-node-esm migration:run -d dist/data-source.js && node dist/server.js",
+    "docker": "docker-compose -f docker-compose.test.yml --project-name test_loregon up -d"
   },
   "author": "Felipe Devilla",
   "license": "MIT",

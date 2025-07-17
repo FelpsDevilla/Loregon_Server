@@ -3,7 +3,7 @@ services:
     build: .
     restart: always
     ports:
-      - "8005:443"
+      - "8080:80"
     environment:
       NODE_ENV: ${NODE_ENV}
       FRONTEND_URL: ${FRONTEND_URL}
@@ -16,7 +16,6 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       JWT_SECRET_REFRESH: ${JWT_SECRET_REFRESH}
     volumes:
-      - ./SSL:/etc/ssl/loregon:ro
       - loregon_server_media:/app/public
     networks:
       - loregon-server-network

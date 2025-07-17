@@ -2,15 +2,15 @@ import "reflect-metadata";
 import dotenv from "dotenv";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 
-const isDev: boolean = process.env.NODE_ENV == undefined;
+const isProd: boolean = process.env.NODE_ENV == "prod";
 
-if (isDev) {
+if (!isProd) {
   console.log("Server running in Developer Mode");
   dotenv.config();
 }
 
 export const config = {
-  port: isDev ? parseInt(process.env.SERVER_PORT || "443") : 443,
+  port: isProd ? 80 : parseInt(process.env.SERVER_PORT || "8080"),
 
   db: {
     type: "postgres",
@@ -19,19 +19,15 @@ export const config = {
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    synchronize: false,
+    synchronize: isProd ? false : true,
     logging: false,
-    entities: ["src/classes/*.ts", "dist/classes/**/*.js"],
-    migrations: ["src/migrations/**/*.ts", "dist/migrations/**/*.js"],
+    entities: isProd ? ["src/classes/**/*.js"] : ["dist/classes/**/*.ts"],
+    migrations: isProd ? ["dist/migrations/**/*.js"] : ["src/migrations/**/*.ts"],
     subscribers: [],
     namingStrategy: new SnakeNamingStrategy(),
   },
 
-  ssl: {
-    keyPath: isDev ? "./SSL/ssl.key" : "/etc/ssl/loregon/ssl.key",
-    certPath: isDev ? "./SSL/ssl.crt" : "/etc/ssl/loregon/ssl.crt",
-  },
-
+  
   filesPath: {
     archiveImages: "public/data/uploads/archive/images",
     galleryImages: "public/data/uploads/gallery/images",
