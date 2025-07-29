@@ -13,5 +13,5 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package*.json ./
 RUN npm install --production
-EXPOSE 443
+EXPOSE 80
 CMD ["npm", "run", "start"]
