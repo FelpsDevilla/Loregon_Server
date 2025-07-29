@@ -8,7 +8,7 @@ This project was developed using **Node.js** + **TypeScript**, using a modular a
 
 ## 🚀 Running in Production
 
-To run **Loregon Server** follow the steps in [Loregon_Docker](https://github.com/FelpsDevilla/Loregon_Docker)
+To run **Loregon** follow the steps in [Loregon_Docker](https://github.com/FelpsDevilla/Loregon_Docker)
 
 ## :toolbox: Technologies Used
 
